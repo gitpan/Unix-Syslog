@@ -1,6 +1,12 @@
 -*- mode: text -*-
 
 Revision history for Perl extension Unix::Syslog.
+
+0.99 Wed Aug 14 21:05:43 2002
+        - Added functions priorityname() and facilityname().
+
+	- Updated docs.
+
 0.98 Tue Jan 22 22:24:39 2002
         - (Syslog.pm) Instead of quoting percent-signs in
           syslog()-wrapper, simply pass the string to libc-syslog() as

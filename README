@@ -55,6 +55,12 @@ package may not be portable in any case. If you plan to write portable
 code using this package, please consult the manuals of the systems you
 wish to run the software on. Then modify your program accordingly.
 
+As of version 0.99 Unix::Syslog provides two functions priorityname()
+and facilityname() that return the names of priority and facility,
+respectively. This functionality is only enabled if an according
+`#define' is enabled through Makefile.PL. By default this statement is
+commented out.
+
 Known bugs
 ==========
 

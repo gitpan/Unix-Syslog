@@ -6,7 +6,7 @@
 # Change 1..1 below to 1..last_test_to_print .
 # (It may become useful if the test is moved to ./t subdirectory.)
 
-$number_of_tests = 55;
+$number_of_tests = 83;
 
 BEGIN { $| = 1; print "1..$number_of_tests\n"; }
 END {print "not ok 1\n" unless $loaded;}
@@ -89,6 +89,32 @@ print "\nThese macros are not defined on all systems:\n";
 printf "%-20s", 'LOG_PRI';     eval { LOG_PRI(1) };       $failures += print_result($@); print " $n\n"; $n++;
 printf "%-20s", 'LOG_MAKEPRI'; eval { LOG_MAKEPRI(1,1) }; $failures += print_result($@); print " $n\n"; $n++;
 printf "%-20s", 'LOG_FAC';     eval { LOG_FAC(1) };       $failures += print_result($@); print " $n\n"; $n++;
+
+print "\nOn some systems these functions return just empty strings:\n";
+foreach $p qw(LOG_EMERG LOG_ALERT LOG_CRIT LOG_ERR LOG_WARNING LOG_NOTICE LOG_INFO
+	      LOG_DEBUG) {
+  my $pnum = &$p;
+  printf "%-30s", "priorityname($p):";
+  unless (defined(priorityname($pnum))) {
+    print "not defined. skipped $n\n"; $n++;
+    next;
+  }
+  eval qq{ printf "%-8s", priorityname($pnum) }; $failures += print_result($@); print " $n\n"; $n++;
+}
+
+print "\n";
+
+foreach $f qw(LOG_KERN LOG_USER LOG_MAIL LOG_DAEMON LOG_AUTH LOG_SYSLOG LOG_LPR
+	      LOG_NEWS LOG_UUCP LOG_CRON LOG_AUTHPRIV LOG_FTP LOG_LOCAL0 LOG_LOCAL1
+	      LOG_LOCAL2 LOG_LOCAL3 LOG_LOCAL4 LOG_LOCAL5 LOG_LOCAL6 LOG_LOCAL7) {
+  my $fnum = &$f;
+  printf "%-30s", "facilityname($f):";
+  unless (defined(facilityname($fnum))) {
+    print "not defined. skipped $n\n"; $n++;
+    next;
+  }
+  eval qq{ printf "%-8s", facilityname($fnum) }; $failures += print_result($@); print " $n\n"; $n++;
+}
 
 print "\nTesting setlogmask:\n";
 print "Setting mask to ", LOG_MASK(LOG_INFO), "\n";

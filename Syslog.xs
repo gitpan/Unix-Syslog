@@ -14,7 +14,7 @@ static SV *ident_svptr;
 
 MODULE = Unix::Syslog	PACKAGE = Unix::Syslog
 
- # $Id: Syslog.xs,v 1.5 2002/01/23 03:42:44 marcus Exp $
+ # $Id: Syslog.xs,v 1.6 2002/08/15 01:07:04 marcus Exp $
  #
  # Copyright (C) 1999,2000,2001,2002 Marcus Harnisch <marcus.harnisch@gmx.net>
  #
@@ -164,6 +164,50 @@ OUTPUT:
 
 #endif
 
+#ifdef SYSLOG_NAMES
+char*
+priorityname(p)
+	int p
+INIT:
+	int i;
+CODE:
+	for (i=0; prioritynames[i].c_val != p && prioritynames[i].c_val != -1; i++) {}
+	if (prioritynames[i].c_val == -1)
+	  RETVAL="";
+	else
+	  RETVAL=prioritynames[i].c_name;
+OUTPUT:
+	RETVAL
+
+char*
+facilityname(f)
+	int f
+INIT:
+	int i;
+CODE:
+	for (i=0; facilitynames[i].c_val != f && facilitynames[i].c_val != -1; i++) {}
+	if (facilitynames[i].c_val == -1)
+	  RETVAL="";
+	else
+	  RETVAL=facilitynames[i].c_name;
+OUTPUT:
+	RETVAL
+
+#else
+char*
+priorityname(p)
+	int p
+CODE:
+	XSRETURN_UNDEF;
+
+char*
+facilityname(f)
+	int f
+CODE:
+	XSRETURN_UNDEF;
+
+#endif
+
  # Miscellaneous constants
 int
 LOG_NFACILITIES()
@@ -188,7 +232,7 @@ openlog(ident, option, facility)
 	PREINIT:
 	STRLEN len;
 	char*  ident_pv;
-	CODE:
+CODE:
  	ident_svptr = newSVsv(ident);
 	ident_pv    = SvPV(ident_svptr, len);
 	openlog(ident_pv, option, facility);

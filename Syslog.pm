@@ -1,4 +1,4 @@
-# $Id: Syslog.pm,v 1.8 2002/01/23 03:38:50 marcus Exp $
+# $Id: Syslog.pm,v 1.9 2002/08/15 01:12:49 marcus Exp $
 #
 # Copyright (C) 1999,2000,2001,2002 Marcus Harnisch <marcus.harnisch@gmx.net>
 #
@@ -27,7 +27,8 @@ require AutoLoader;
 		LOG_LOCAL3 LOG_LOCAL4 LOG_LOCAL5 LOG_LOCAL6 LOG_LOCAL7
 		LOG_PID LOG_CONS LOG_ODELAY LOG_NDELAY LOG_NOWAIT LOG_PERROR
 		LOG_NFACILITIES LOG_FACMASK LOG_FAC LOG_MASK LOG_PRI LOG_UPTO
-		LOG_MAKEPRI closelog openlog syslog setlogmask);
+		LOG_MAKEPRI closelog openlog syslog setlogmask priorityname
+		facilityname);
 
 %EXPORT_TAGS = ("macros" => [qw(LOG_EMERG LOG_ALERT LOG_CRIT LOG_ERR
 				LOG_WARNING LOG_NOTICE LOG_INFO LOG_DEBUG
@@ -39,9 +40,10 @@ require AutoLoader;
 				LOG_ODELAY LOG_NDELAY LOG_NOWAIT LOG_PERROR
 				LOG_NFACILITIES LOG_FACMASK LOG_FAC LOG_MASK
 				LOG_PRI LOG_UPTO LOG_MAKEPRI)],
-		"subs"  => [qw(closelog openlog syslog setlogmask)]);
+		"subs"  => [qw(closelog openlog syslog setlogmask priorityname
+			       facilityname)]);
 
-$VERSION = '0.98';
+$VERSION = '0.99';
 
 bootstrap Unix::Syslog $VERSION;
 
@@ -145,6 +147,18 @@ for the priorities indicated by the bits in the mask that are set and
 is disabled where the bits are not set. Macros are provided to specify
 valid and portable arguments to C<setlogmask()>. Usually the default
 log mask allows all messages to be logged.
+
+=item priorityname $priority
+
+returns a string containing the name of I<$priority> as string. If
+this functionality has not been enabled at installation, the function
+returns I<undef>.
+
+=item facilityname $facility
+
+returns a string containing the name of I<$facility> as string. If
+this functionality has not been enabled at installation, the function
+returns I<undef>.
 
 =back
 

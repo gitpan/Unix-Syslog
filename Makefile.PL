@@ -5,6 +5,7 @@ WriteMakefile(
     'NAME'	=> 'Unix::Syslog',
     'VERSION_FROM' => 'Syslog.pm', # finds $VERSION
     'LIBS'	=> ['-lc'],   # e.g., '-lm' 
+#    'DEFINE'	=> '-DSYSLOG_NAMES',     # e.g., '-DHAVE_SOMETHING' 
     'DEFINE'	=> '',     # e.g., '-DHAVE_SOMETHING' 
     'INC'	=> '',     # e.g., '-I/usr/include/other' 
 );
