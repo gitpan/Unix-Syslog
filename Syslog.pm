@@ -1,4 +1,4 @@
-# $Id: Syslog.pm,v 1.9 2002/08/15 01:12:49 marcus Exp $
+# $Id: Syslog.pm,v 1.10 2002/08/28 21:07:40 marcus Exp $
 #
 # Copyright (C) 1999,2000,2001,2002 Marcus Harnisch <marcus.harnisch@gmx.net>
 #
@@ -43,7 +43,7 @@ require AutoLoader;
 		"subs"  => [qw(closelog openlog syslog setlogmask priorityname
 			       facilityname)]);
 
-$VERSION = '0.99';
+$VERSION = '0.100';
 
 bootstrap Unix::Syslog $VERSION;
 

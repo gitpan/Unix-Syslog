@@ -1,6 +1,13 @@
 -*- mode: text -*-
 
 Revision history for Perl extension Unix::Syslog.
+0.100 Wed Aug 28 17:09:37 2002
+        - (test.pl) Major changes due to complete misunderstanding of
+           eval()
+
+        - (Syslog.pm) Updated version number
+
+	- (Makefile.PL) Cleanup
 
 0.99 Wed Aug 14 21:05:43 2002
         - Added functions priorityname() and facilityname().
