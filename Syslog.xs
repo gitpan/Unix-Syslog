@@ -14,13 +14,15 @@ static SV *ident_svptr;
 
 MODULE = Unix::Syslog	PACKAGE = Unix::Syslog
 
- # $Id: Syslog.xs,v 1.6 2002/08/15 01:07:04 marcus Exp $
+ # $Id: Syslog.xs,v 1.7 2007/10/03 14:07:41 marcus Exp $
  #
- # Copyright (C) 1999,2000,2001,2002 Marcus Harnisch <marcus.harnisch@gmx.net>
+ # Copyright (c) 1999,2000,2001,2002,2007 Marcus Harnisch <marcus.harnisch@gmx.net>
  #
  # This program is free software; you can redistribute it and/or modify
- # it under the terms of the Artistic License. A copy of the license (see
- # file Artistic in this directory) must be included in the package.
+ # it under the terms of the Artistic License 2.0 (see file Artistic in
+ # this directory).
+ # 
+ # Check clause (4) for your rights to distribute this software.
 
 PROTOTYPES: DISABLE
 
