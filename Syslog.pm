@@ -1,4 +1,4 @@
-# $Id: Syslog.pm,v 1.11 2007/10/03 14:07:41 marcus Exp $
+# $Id: Syslog.pm,v 1.12 2008/05/18 19:26:54 marcus Exp $
 #
 # Copyright (c) 1999,2000,2001,2002,2007 Marcus Harnisch <marcus.harnisch@gmx.net>
 #
@@ -44,7 +44,7 @@ require DynaLoader;
 		"subs"  => [qw(closelog openlog syslog setlogmask priorityname
 			       facilityname)]);
 
-$VERSION = '1.0';
+$VERSION = '1.1';
 
 bootstrap Unix::Syslog $VERSION;
 

@@ -10,11 +10,11 @@ extern "C" {
 
 #include <syslog.h>
 
-static SV *ident_svptr;
+static SV *ident_svptr = NULL;
 
 MODULE = Unix::Syslog	PACKAGE = Unix::Syslog
 
- # $Id: Syslog.xs,v 1.7 2007/10/03 14:07:41 marcus Exp $
+ # $Id: Syslog.xs,v 1.8 2008/05/18 13:40:47 marcus Exp $
  #
  # Copyright (c) 1999,2000,2001,2002,2007 Marcus Harnisch <marcus.harnisch@gmx.net>
  #
@@ -259,4 +259,4 @@ void
 closelog()
 	CODE:
 	closelog();
-	if (SvREFCNT(ident_svptr)) SvREFCNT_dec(ident_svptr);
+	if ((ident_svptr != NULL) && SvREFCNT(ident_svptr)) SvREFCNT_dec(ident_svptr);
